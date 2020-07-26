@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -145,17 +146,23 @@ export default class App extends React.Component<AppProps, AppState> {
     //   return <LoadingPage />;
     // }
     if (!this.state.loggedIn){
-      return <Login tryCreateUser={this.tryCreateUser} tryLogin={this.tryLogin} />
+      return (
+      <PaperProvider>
+        <Login tryCreateUser={this.tryCreateUser} tryLogin={this.tryLogin} />
+      </PaperProvider>
+      )
     }
     // if (!this.state.onboarded){
     //   return <Onboard tryCreateHome={this.tryCreateHome} user={this.state.user} />
     // }
     return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Home} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
     );
   }
 }

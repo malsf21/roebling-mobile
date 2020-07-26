@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Block, Button, Input } from 'galio-framework';
+import { Button, TextInput } from 'react-native-paper';
 import { View } from "react-native";
 
 type LoginFormProps = {
@@ -37,21 +37,22 @@ class LoginForm extends React.Component<LoginFormProps, LoginFormState> {
     }
     render = () => {
         return (
-            <Block>
-                <Input 
+            <View>
+                <TextInput
+                    label="Email"
                     placeholder="email@roe.bling"
                     value={this.state.inputEmail}
-                    onChangeText={(text:string) => this.setState({inputEmail: text})} 
-                    type="email-address"
+                    onChangeText={(text:string) => this.setState({inputEmail: text})}
                 />
-                <Input 
+                <TextInput
+                    label="Password"
                     placeholder="password" 
+                    value={this.state.inputPassword}
                     onChangeText={(text:string) => this.setState({inputPassword: text})} 
-                    password viewPass 
                 />
                 <Button onPress={this.handleLoginSubmit}>sign in</Button>
                 <Button onPress={this.props.toggleForm}>or, sign up</Button>
-            </Block>
+            </View>
         );
     }
 }
